@@ -7,10 +7,13 @@ body {
   padding: 0;
   color: #151C22;
   font-family: "WorkSansRegular", "Arial", sans-serif;
+  font-weight: normal;
+  font-style: normal;
   background-color: #ffffff;
 }
 .App {
   display: flex;
+  flex-direction: column;
   width: 100%;
 }
 .container {
@@ -27,4 +30,11 @@ button {
   border: none;
   font-family: "WorkSansRegular", "Arial", sans-serif;
   cursor: pointer;
+}
+.black-button {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  background-color: #151c22;
+  color: #ffffff;
 }
