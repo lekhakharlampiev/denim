@@ -1,6 +1,8 @@
 import React from 'react';
 import './catalog.css';
 import { Link } from "react-router-dom";
+import Filter from '../Filter/Filter';
+
 const product = [
   {img: "/img/catalog/product-1.png", title: "Jacket", price: "40", mainPhoto: false},
   {img: "/img/catalog/product-2.png", title: "Jacket", price: "70", mainPhoto: false},
@@ -84,7 +86,7 @@ function Catalog() {
         </section>
         <section className="page-product">
           <div className="page-product__filter">
-            <input type="text" name="filter" />
+            <Filter />
           </div>
           <div className="page-product__container">
             {renderCatalogCard()}

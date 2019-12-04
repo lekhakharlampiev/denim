@@ -159,6 +159,7 @@
 .page-product__filter {
   display: flex;
   padding: 40px 0;
+  padding-right: 24px;
   justify-content: flex-end;
 }
 .page-product__product-list {
