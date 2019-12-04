@@ -116,6 +116,9 @@
   flex-direction: column;
   margin-left: auto;
 }
+.main-header__basket {
+  margin-bottom: 30px;
+}
 .main-header__basket > a {
   display: inline-block;
   vertical-align: middle;
@@ -126,7 +129,6 @@
   background-image: url("/img/basket.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  margin-bottom: 30px;
 }
 .main-header__search-button {
   display: inline-block;
