@@ -81,12 +81,32 @@
 .product-option__price,
 .product-option__color,
 .product-option__collection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-bottom: 2px solid #F1F2F4;
 }
-
-.product-option__price {
-  height: 300px;
+/* переопределение стилей Range Input */
+.product-filter__option
+.input-range {
+  width: 210px;
+  margin: 40px 0;
 }
-.product-option__price > .option-show-button {
-  margin-bottom: 50px;
+.input-range__label--min,
+.input-range__label--max {
+  display: none;
 }
+.product-filter__option
+.input-range__label {
+  top: 10px;
+}
+.product-filter__option
+.input-range__label {
+  font-family: "WorkSansRegular", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #151C22;
+}
+ 

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 import './filter.css';
 
 class Filter extends React.Component {
@@ -8,7 +9,7 @@ class Filter extends React.Component {
     super(props)
     this.state = {
       filterOpen: false,
-      inputPrice: { min: 0, max: 5 }
+      inputPrice: { min: 50, max: 400 }
     }
   }
   filterActivateClick = () => {
@@ -17,6 +18,7 @@ class Filter extends React.Component {
     });
   }
   render() {
+    console.log(this.state.inputPrice)
     const opened = this.state.filterOpen ? true : false;
     const count = 9;
     return (
@@ -36,6 +38,14 @@ class Filter extends React.Component {
             <span>Price</span>
             <span className="arrow arrow-down" />
           </button>
+          <InputRange
+            step={10}
+            maxValue={500}
+            minValue={0}
+            formatLabel={value => `${value} $`}
+            value={this.state.inputPrice}
+            onChange={value => this.setState({ inputPrice: value })}
+          />
           </div>
           <div className="product-option__color">
           <button type="button" className="button option-show-button">
