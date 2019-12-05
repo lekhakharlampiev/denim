@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import './filter.css';
@@ -9,7 +8,10 @@ class Filter extends React.Component {
     super(props)
     this.state = {
       filterOpen: false,
-      inputPrice: { min: 50, max: 400 }
+      /*данные отфильтрованных полей хранятся в состоянии */
+      inputPrice: { min: 100, max: 400 }, /*данные диапазона цены */
+      inputColor: [],                     /* выбранные цвета */
+      inputCollection: []                 /* выбранные коллекции */
     }
   }
   filterActivateClick = () => {
@@ -17,55 +19,124 @@ class Filter extends React.Component {
       filterOpen: !this.state.filterOpen
     });
   }
+  filterButtonClick = (e) => {
+    const parent = e.currentTarget.parentElement;
+    const arrow = e.currentTarget.querySelector('.arrow');
+    if(parent.classList.contains('option-show')) {
+      parent.classList.remove('option-show');
+      arrow.classList.remove('arrow-up');
+      arrow.classList.add('arrow-down');
+    } else {
+      arrow.classList.remove('arrow-down');
+      arrow.classList.add('arrow-up');
+      parent.classList.add('option-show');
+    }
+  }
+  colorChangeHandler = (e) => {
+    const colors = this.state.inputColor;
+    const value = e.target.value;
+    if (colors.includes(value)) {
+      const index = colors.indexOf(value);
+      colors.splice(index, 1);
+    } else {
+      colors.push(value)
+    }
+    this.setState({
+      inputColor: colors
+    })
+  }
+  collectionChangeHandler = (e) => {
+    const collection = this.state.inputCollection;
+    const value = e.target.value;
+    if (collection.includes(value)) {
+      const index = collection.indexOf(value);
+      collection.splice(index, 1);
+    } else {
+      collection.push(value)
+    }
+    this.setState({
+      inputCollection: collection
+    });
+  }
+  resetButtonClick = () => {
+    this.setState({
+      inputPrice: { min: 100, max: 400 },
+      inputColor: [],
+      inputCollection: []
+    });
+  }
   render() {
-    console.log(this.state.inputPrice)
     const opened = this.state.filterOpen ? true : false;
     const count = 9;
     return (
       <div className="product-filter">
         <div className="product-filter__activate">
-          <button type="button" 
+          <button type="button"
             className="button filter-activate-button"
             onClick={this.filterActivateClick}
           >
             <span>Filter by</span>
-            <span className="arrow arrow-down" />
+            <span className={"arrow" + (opened ? " arrow-up" : " arrow-down")} />
           </button>
         </div>
-        <div className={"product-filter__option" + (opened ? " open" : "")}>
-          <div className="product-option__price">
-          <button type="button" className="button option-show-button">
-            <span>Price</span>
-            <span className="arrow arrow-down" />
-          </button>
-          <InputRange
-            step={10}
-            maxValue={500}
-            minValue={0}
-            formatLabel={value => `${value} $`}
-            value={this.state.inputPrice}
-            onChange={value => this.setState({ inputPrice: value })}
-          />
+        <form className={"product-filter__option" + (opened ? " open" : "")}>
+          <div className="product-filter__item">
+            <button type="button" className="button option-show-button" onClick={this.filterButtonClick}>
+              <span>Price</span>
+              <span className="arrow arrow-down" />
+            </button>
+            <InputRange
+              step={10}
+              maxValue={500}
+              minValue={0}
+              value={this.state.inputPrice}
+              formatLabel={value => `${value} $`}
+              onChange={value => this.setState({ inputPrice: value })}
+            />
           </div>
-          <div className="product-option__color">
-          <button type="button" className="button option-show-button">
-            <span>Color</span>
-            <span className="arrow arrow-down" />
-          </button>
+          <div className="product-filter__item">
+            <button type="button" className="button option-show-button" onClick={this.filterButtonClick}>
+              <span>Color</span>
+              <span className="arrow arrow-down" />
+            </button>
+            <div className="selection-color" onChange={this.colorChangeHandler}>
+              <input type="checkbox" id="silver" value="silver" />
+              <label htmlFor="silver" className="checkbox-color checkbox-color--silver" />
+              <input type="checkbox" id="blue-gray" value="blue-gray" />
+              <label htmlFor="blue-gray" className="checkbox-color checkbox-color--blue-gray" />
+              <input type="checkbox" id="gray" value="gray" />
+              <label htmlFor="gray" className="checkbox-color checkbox-color--gray" />
+              <input type="checkbox" id="black" value="black" />
+              <label htmlFor="black" className="checkbox-color checkbox-color--black" />
+              <input type="checkbox" id="white-gray" value="white-gray" />
+              <label htmlFor="white-gray" className="checkbox-color checkbox-color--white-gray" />
+              <input type="checkbox" id="blue" value="blue" />
+              <label htmlFor="blue" className="checkbox-color checkbox-color--blue" />
+            </div>
           </div>
-          <div className="product-option__collection">
-          <button type="button" className="button option-show-button">
-            <span>Collection</span>
-            <span className="arrow arrow-down" />
-          </button>
+          <div className="product-filter__item">
+            <button type="button" className="button option-show-button" onClick={this.filterButtonClick}>
+              <span>Collection</span>
+              <span className="arrow arrow-down" />
+            </button>
+            <div className="selection-collection" onChange={this.collectionChangeHandler}>
+              <input type="checkbox" id="casual" value="casual" />
+              <label htmlFor="casual" className="selection-collection__label">Casual</label>
+              <input type="checkbox" id="classic" value="classic" />
+              <label htmlFor="classic" className="selection-collection__label">Classic</label>
+              <input type="checkbox" id="petite" value="petite" />
+              <label htmlFor="petite" className="selection-collection__label">Petite</label>
+              <input type="checkbox" id="soulluxe" value="soulluxe" />
+              <label htmlFor="soulluxe" className="selection-collection__label">Soulluxe</label>
+            </div>
           </div>
           <button type="button" className="button black-button show-filtred-product-button">
             Apply ({count} products)
           </button>
-          <button type="button" className="button clean-filter-button">
+          <button type="reset" className="button clean-filter-button" onClick={this.resetButtonClick}>
             Clear all
           </button>
-        </div>
+        </form>
       </div>
     );
   }

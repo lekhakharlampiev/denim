@@ -42,6 +42,25 @@
   background-color: #151C22;
   transform: rotate(135deg);
 }
+.arrow-up::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: -4px;
+  width: 11px;
+  height: 2px;
+  background-color: #151C22;
+  transform: rotate(-45deg);
+}
+.arrow-up::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  width: 11px;
+  height: 2px;
+  background-color: #151C22;
+  transform: rotate(-135deg);
+}
 .product-filter__option {
   display: none;
   position: absolute;
@@ -78,13 +97,17 @@
   line-height: 16px;
   color: #151C22;
 }
-.product-option__price,
-.product-option__color,
-.product-option__collection {
+.product-filter__item {
   display: flex;
+  height: 50px;
+  overflow: hidden;
   flex-direction: column;
   align-items: center;
   border-bottom: 2px solid #F1F2F4;
+}
+.product-filter__item.option-show {
+  height: 100%;
+  overflow: visible;
 }
 /* переопределение стилей Range Input */
 .product-filter__option
@@ -108,5 +131,111 @@
   font-size: 14px;
   line-height: 16px;
   color: #151C22;
+}
+.product-filter__option
+.input-range__track--active {
+  background: #151C22;
+}
+.product-filter__option
+.input-range__slider {
+  background: #151C22;
+  border-color: #151C22;
+}
+/* конец Range Input */
+.selection-color {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 25px 15px;
+}
+.selection-color
+input[type="checkbox"] {
+  display: none;
+}
+.checkbox-color {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.selection-color
+input[type="checkbox"]:checked + .checkbox-color::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+}
+.checkbox-color:last-of-type {
+  margin-right: 0;
+}
+.checkbox-color--silver {
+  background-color: #B0C3C7;
+}
+.checkbox-color--silver::before {
+  border-color: #B0C3C7;
+}
+.checkbox-color--blue-gray {
+  background-color: #3B6392;
+}
+.checkbox-color--blue-gray::before {
+  border-color: #3B6392;
+}
+.checkbox-color--gray {
+  background-color: #BFC3C8;
+}
+.checkbox-color--gray::before {
+  border-color: #BFC3C8;
+}
+.checkbox-color--black {
+  background-color: #2D2E2E;
+}
+.checkbox-color--black::before {
+  border-color: #2D2E2E;
+}
+.checkbox-color--white-gray {
+  background-color: #ECECEC;
+}
+.checkbox-color--white-gray::before {
+  border-color: #ECECEC;
+}
+.checkbox-color--blue {
+  background-color: #4193DA;
+}
+.checkbox-color--blue::before {
+  border-color: #4193DA;
+}
+.selection-collection {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  width: 80%;
+  margin-left: 15px;
+}
+.selection-collection
+input {
+  display: none;
+}
+.selection-collection__label {
+  font-family: "WorkSansRegular", "Arial", sans-serif;
+  padding: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #727A82;
+  margin-right: 25px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.selection-collection
+input:checked + .selection-collection__label {
+  color: #151C22;
+  font-weight: 600;
 }
  
