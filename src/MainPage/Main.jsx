@@ -9,7 +9,7 @@ function Main() {
     {img: "/img/bestsellersCard/img-3.png", title: "Jacket", price: "90"},
     {img: "/img/bestsellersCard/img-4.png", title: "Overalls", price: "160"}
   ];
-  function renderBestsellersCard() {
+  const renderBestsellersCard = () => {
     return(
       <ul className="bestsellers__product-list">
         {BestsellersCard.map(({ img, title, price }) => {
