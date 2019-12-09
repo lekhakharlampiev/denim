@@ -1,8 +1,37 @@
 import React from 'react';
 import InputRange from 'react-input-range';
+import PropTypes from 'prop-types';
 import 'react-input-range/lib/css/index.css';
 import './filter.css';
 
+const FilterButton = (props) => {
+  const { title } = props;
+  const filterButtonClick = (e) => {
+    const parent = e.currentTarget.parentElement;
+    const arrow = e.currentTarget.querySelector('.arrow');
+    if(parent.classList.contains('option-show')) {
+      parent.classList.remove('option-show');
+      arrow.classList.remove('arrow-up');
+      arrow.classList.add('arrow-down');
+    } else {
+      arrow.classList.remove('arrow-down');
+      arrow.classList.add('arrow-up');
+      parent.classList.add('option-show');
+    }
+  };
+  return (
+    <>
+      <button type="button" className="button option-show-button" onClick={filterButtonClick}>
+        <span>{title}</span>
+        <span className="arrow arrow-down" />
+      </button>
+    </>
+  )
+}
+
+FilterButton.propTypes = {
+  title: PropTypes.string.isRequired
+};
 class Filter extends React.Component {
   constructor(props) {
     super(props)
@@ -18,19 +47,6 @@ class Filter extends React.Component {
     this.setState({
       filterOpen: !this.state.filterOpen
     });
-  }
-  filterButtonClick = (e) => {
-    const parent = e.currentTarget.parentElement;
-    const arrow = e.currentTarget.querySelector('.arrow');
-    if(parent.classList.contains('option-show')) {
-      parent.classList.remove('option-show');
-      arrow.classList.remove('arrow-up');
-      arrow.classList.add('arrow-down');
-    } else {
-      arrow.classList.remove('arrow-down');
-      arrow.classList.add('arrow-up');
-      parent.classList.add('option-show');
-    }
   }
   colorChangeHandler = (e) => {
     const colors = this.state.inputColor;
@@ -81,10 +97,7 @@ class Filter extends React.Component {
         </div>
         <form className={"product-filter__option" + (opened ? " open" : "")}>
           <div className="product-filter__item">
-            <button type="button" className="button option-show-button" onClick={this.filterButtonClick}>
-              <span>Price</span>
-              <span className="arrow arrow-down" />
-            </button>
+            <FilterButton title={"Price"} />
             <InputRange
               step={10}
               maxValue={500}
@@ -95,10 +108,7 @@ class Filter extends React.Component {
             />
           </div>
           <div className="product-filter__item">
-            <button type="button" className="button option-show-button" onClick={this.filterButtonClick}>
-              <span>Color</span>
-              <span className="arrow arrow-down" />
-            </button>
+            <FilterButton title={"Color"} />
             <div className="selection-color" onChange={this.colorChangeHandler}>
               <input type="checkbox" id="silver" value="silver" />
               <label htmlFor="silver" className="checkbox-color checkbox-color--silver" />
@@ -115,10 +125,7 @@ class Filter extends React.Component {
             </div>
           </div>
           <div className="product-filter__item">
-            <button type="button" className="button option-show-button" onClick={this.filterButtonClick}>
-              <span>Collection</span>
-              <span className="arrow arrow-down" />
-            </button>
+            <FilterButton title={"Collection"} />
             <div className="selection-collection" onChange={this.collectionChangeHandler}>
               <input type="checkbox" id="casual" value="casual" />
               <label htmlFor="casual" className="selection-collection__label">Casual</label>

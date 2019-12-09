@@ -12,9 +12,9 @@ function Main() {
   const renderBestsellersCard = () => {
     return(
       <ul className="bestsellers__product-list">
-        {BestsellersCard.map(({ img, title, price }) => {
+        {BestsellersCard.map(({ img, title, price }, i) => {
           return (
-            <li className="bestsellers__product-card">
+            <li className="bestsellers__product-card" key={i + 1}>
               <img src={img} alt={title} className="bestsellers__product-card__img" width="270"/>
               <div className="bestsellers__product-card__title">{title}</div>
               <div className="bestsellers__product-card__price"><span>$</span>{price}</div>
