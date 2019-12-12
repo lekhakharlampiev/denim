@@ -2,6 +2,7 @@ import React from 'react';
 import './catalog.css';
 import { Link } from "react-router-dom";
 import Filter from '../Filter/Filter';
+import PageHeader from '../PageHeader/PageHeader';
 
 const product = [
   {img: "/img/catalog/product-1.png", title: "Jacket", price: "40", mainPhoto: false},
@@ -27,51 +28,24 @@ function Catalog() {
   }
   function renderCatalogCard() {
     return (
-      <ul className="page-product__product-list">
+      <div className="page-product__product-list">
         {product.map(({ img, title, price, mainPhoto }, i) => {
           const count = i + 1;
           return (
-            <li key={count} className={"page-product__product-card" + (mainPhoto ? " page-product__product-card--main" : "" )}>
+            <Link to='/card' key={count} className={"page-product__product-card" + (mainPhoto ? " page-product__product-card--main" : "" )}>
               <img src={img} alt={title} className="page-product__product-card__img" width="245"/>
               <div className="page-product__product-card__title">{title}</div>
               <div className="page-product__product-card__price"><span>$</span>{price}</div>
-            </li>
+            </Link>
           )
         })}
-      </ul>
+      </div>
     )
 
   }
   return (
     <div className="container">
-      <header className="catalog-header">
-        <nav className="catalog-header__menu">
-          <ul className="catalog-header__menu-list">
-            <li className="catalog-header__menu-item">
-              <Link to="/catalog">Woman</Link>
-            </li>
-            <li className="catalog-header__menu-item">
-              <Link to="/catalog">Man</Link>
-            </li>
-            <li className="catalog-header__menu-item">
-              <Link to="/catalog">New</Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="catalog-logo">
-          <Link to="/">
-            <img src="/img/Nîmes.svg" alt="Nimes" width="75"/>
-          </Link>
-        </div>
-        <div className="catalog-header__user-option">
-          <div className="catalog-header__basket">
-            <Link to="/basket">Корзина</Link>
-          </div>
-          <div className="catalog-header__search">
-            <button type="button" className="button catalog-header__search-button">Поиск</button>
-          </div>
-        </div>
-      </header>
+      <PageHeader />
       <main className="page-body">
         <section className="page-info">
           <div className="page-info__content">

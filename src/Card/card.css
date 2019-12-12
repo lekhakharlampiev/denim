@@ -1,0 +1,123 @@
+.product-full-card {
+  padding: 50px 0;
+  display: flex;
+}
+.product-slider {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.product-slider__full-img {
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.product-slider__list-img {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.product-slider__list-img > img {
+  margin-right: 20px;
+}
+.product-slider__list-img > img:nth-child(4n) {
+  margin: 0;
+}
+.product-slider-arrow {
+  position: absolute;
+  background-color: transparent;
+  top: 200px;
+  width: 20px;
+  height: 10px;
+}
+.product-slider-arrow::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 0px;
+  width: 14px;
+  height: 2px;
+  background-color: #151C22;
+  transform: rotate(45deg);
+}
+.product-slider-arrow::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  width: 14px;
+  height: 2px;
+  background-color: #151C22;
+  transform: rotate(135deg);
+}
+.product-slider--previous {
+  left: 70px;
+  transform: rotate(90deg);
+}
+.product-slider--next {
+  transform: rotate(-90deg);
+  right: 70px;
+}
+.product-info {
+  width: 50%;
+  background-color: #F1F2F4;
+  padding: 70px;
+}
+.product-info__title {
+  margin: 0;
+  margin-bottom: 40px;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 38px;
+  color: #151C22;
+}
+.product-info__description {
+  margin: 0;
+  margin-bottom: 50px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+.product-info__color-title,
+.product-info__size-title {
+  display: inline-block;
+  margin-bottom: 25px;
+  font-size: 18px;
+  line-height: 21px;
+}
+span.product-info__color-valid {
+  justify-content: flex-start;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.product-info__size {
+  margin-bottom: 40px;
+}
+.product-info__size-options > span {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 21px;
+  color: #727A82;
+  margin-right: 20px;
+}
+.product-info__size-options > span:last-child {
+  margin: 0;
+}
+.product-info__size-options > span.valid {
+  font-weight: 600;
+  color: #151C22;
+}
+.product-info__price {
+  margin-bottom: 50px;
+}
+.product-info__price span {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+}
+.product-info__price > span > span {
+  padding: 0 10px;
+}
+.product-info__button {
+  width: 200px;
+  padding: 30px 0;
+}
