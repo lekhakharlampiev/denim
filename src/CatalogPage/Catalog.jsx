@@ -33,13 +33,14 @@ function Catalog() {
         {product.map(({ img, title, price, mainPhoto }, i) => {
           const count = `${title} ${i}`;
           return (
-            <ProductCard 
-              title={title}
-              img={img}
-              price={price}
-              mainPhoto={mainPhoto}
-              count={count}
-            />   
+            <div className={`page-product__product-card ${mainPhoto ? `page-product__product-card--main` : ``}`}>
+              <ProductCard 
+                title={title}
+                img={img}
+                price={price}
+                count={count}
+              />
+            </div>   
           )
         })}
       </div>

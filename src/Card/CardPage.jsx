@@ -2,10 +2,11 @@ import React from 'react';
 import './card-page.css';
 import './../Filter/filter.css';
 import PageHeader from '../PageHeader/PageHeader';
+import ProductCard from './ProductCard';
 
 const SimilarAds = [
-  {img: "/img/bestsellersCard/img-2.png", title: "Overalls", price: "140"},
-  {img: "/img/categories/categories-4.png", title: "Overalls", price: "110"},
+  {img: "/img/catalog/product-9.png", title: "Jacket", price: "85"},
+  {img: "/img/catalog/product-8.png", title: "Jacket", price: "35"},
   {img: "/img/catalog/product-2.png", title: "Jacket", price: "70"},
   {img: "/img/catalog/product-3.png", title: "Jacket", price: "60",}
 ]
@@ -13,17 +14,19 @@ function CardPage(props) {
   const { title, photo, price} = props.location.state;
   const renderSimilarAds = () => {
     return (
-      <ul className="similar-ads__list">
+      <div className="similar-ads__list">
         {SimilarAds.map(({ img, title, price }, i) => {
+          const count = `${title} ${i}`;
           return (
-            <li className="similar-ads__product-card" key={`${title}-${i}`}>
-              <img src={img} alt={title} className="similar-ads__product-card__img" width="270" height="350"/>
-              <div className="similar-ads__product-card__title">{title}</div>
-              <div className="similar-ads__product-card__price"><span>$</span>{price}</div>
-            </li>
+            <ProductCard 
+              title={title}
+              img={img}
+              price={price}
+              count={count}
+            />  
           );
         })}
-      </ul>
+      </div>
     )
   };
   return (
@@ -44,7 +47,7 @@ function CardPage(props) {
           </div>
         </div>
         <div className="product-info">
-          <h2 className="product-info__title">{title}</h2>
+          <h2 className="product-info__title" id="product-title">{title}</h2>
           <p className="product-info__description">
             Overalls in washed organic cotton denim. 
             Collar, button fly, and adjustable belt 
