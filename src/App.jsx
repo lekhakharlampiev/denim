@@ -8,7 +8,7 @@ import './App.css';
 import Main from './MainPage/Main'
 import Catalog from './CatalogPage/Catalog';
 import Footer from './Footer/Footer';
-import Card from './Card/Card';
+import CardPage from './Card/CardPage';
 
 class App extends React.Component {
   render() {
@@ -18,7 +18,7 @@ class App extends React.Component {
         <Switch>
           <Route history={history} path='/catalog' component={Catalog} />
           <Route history={history} path='/home' component={Main} />
-          <Route history={history} path='/card' component={Card} />
+          <Route history={history} path='/card' component={CardPage} />
           <Redirect from='/' to='/home' />
         </Switch>
         <Footer />

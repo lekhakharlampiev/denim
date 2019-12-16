@@ -1,5 +1,5 @@
 import React from 'react';
-import './card.css';
+import './card-page.css';
 import './../Filter/filter.css';
 import PageHeader from '../PageHeader/PageHeader';
 
@@ -9,7 +9,8 @@ const SimilarAds = [
   {img: "/img/catalog/product-2.png", title: "Jacket", price: "70"},
   {img: "/img/catalog/product-3.png", title: "Jacket", price: "60",}
 ]
-function ProductCard() {
+function CardPage(props) {
+  const { title, photo, price} = props.location.state;
   const renderSimilarAds = () => {
     return (
       <ul className="similar-ads__list">
@@ -33,7 +34,7 @@ function ProductCard() {
           <button type="button" className="button product-slider-arrow product-slider--previous" />
           <button type="button" className="button product-slider-arrow product-slider--next" />
           <div className="product-slider__full-img">
-            <img src="/img/card/slider-1.png" alt="product" width="400" />
+            <img src={photo} alt="product" width="400" />
           </div>
           <div className="product-slider__list-img">
             <img src="/img/card/slider-2.png" alt="product" width="85" />
@@ -43,7 +44,7 @@ function ProductCard() {
           </div>
         </div>
         <div className="product-info">
-          <h2 className="product-info__title">Overalls</h2>
+          <h2 className="product-info__title">{title}</h2>
           <p className="product-info__description">
             Overalls in washed organic cotton denim. 
             Collar, button fly, and adjustable belt 
@@ -73,7 +74,7 @@ function ProductCard() {
             </div>  
           </div>
           <div className="product-info__price">
-            <span>$<span>160</span></span>
+            <span>$<span>{price}</span></span>
           </div>
           <button type="button" className="button black-button product-info__button">Add to cart</button>
         </div>
@@ -91,4 +92,4 @@ function ProductCard() {
     </div>
   )
 }
-export default ProductCard;
+export default CardPage;

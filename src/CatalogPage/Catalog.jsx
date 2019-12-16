@@ -3,6 +3,7 @@ import './catalog.css';
 import { Link } from "react-router-dom";
 import Filter from '../Filter/Filter';
 import PageHeader from '../PageHeader/PageHeader';
+import ProductCard from './../Card/ProductCard';
 
 const product = [
   {img: "/img/catalog/product-1.png", title: "Jacket", price: "40", mainPhoto: false},
@@ -30,19 +31,15 @@ function Catalog() {
     return (
       <div className="page-product__product-list">
         {product.map(({ img, title, price, mainPhoto }, i) => {
-          const count = i + 1;
+          const count = `${title} ${i}`;
           return (
-            <Link to={{
-              pathname: '/card',
-              state: { title: title, photo: img, price: price}
-            }} 
-              key={count} 
-              className={"page-product__product-card" + (mainPhoto ? " page-product__product-card--main" : "" )}
-            >
-              <img src={img} alt={title} className="page-product__product-card__img" width="245"/>
-              <div className="page-product__product-card__title">{title}</div>
-              <div className="page-product__product-card__price"><span>$</span>{price}</div>
-            </Link>
+            <ProductCard 
+              title={title}
+              img={img}
+              price={price}
+              mainPhoto={mainPhoto}
+              count={count}
+            />   
           )
         })}
       </div>
