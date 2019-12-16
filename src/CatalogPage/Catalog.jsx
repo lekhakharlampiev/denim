@@ -32,7 +32,13 @@ function Catalog() {
         {product.map(({ img, title, price, mainPhoto }, i) => {
           const count = i + 1;
           return (
-            <Link to='/card' key={count} className={"page-product__product-card" + (mainPhoto ? " page-product__product-card--main" : "" )}>
+            <Link to={{
+              pathname: '/card',
+              state: { title: title, photo: img, price: price}
+            }} 
+              key={count} 
+              className={"page-product__product-card" + (mainPhoto ? " page-product__product-card--main" : "" )}
+            >
               <img src={img} alt={title} className="page-product__product-card__img" width="245"/>
               <div className="page-product__product-card__title">{title}</div>
               <div className="page-product__product-card__price"><span>$</span>{price}</div>

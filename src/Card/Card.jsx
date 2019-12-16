@@ -3,7 +3,28 @@ import './card.css';
 import './../Filter/filter.css';
 import PageHeader from '../PageHeader/PageHeader';
 
+const SimilarAds = [
+  {img: "/img/bestsellersCard/img-2.png", title: "Overalls", price: "140"},
+  {img: "/img/categories/categories-4.png", title: "Overalls", price: "110"},
+  {img: "/img/catalog/product-2.png", title: "Jacket", price: "70"},
+  {img: "/img/catalog/product-3.png", title: "Jacket", price: "60",}
+]
 function ProductCard() {
+  const renderSimilarAds = () => {
+    return (
+      <ul className="similar-ads__list">
+        {SimilarAds.map(({ img, title, price }, i) => {
+          return (
+            <li className="similar-ads__product-card" key={`${title}-${i}`}>
+              <img src={img} alt={title} className="similar-ads__product-card__img" width="270" height="350"/>
+              <div className="similar-ads__product-card__title">{title}</div>
+              <div className="similar-ads__product-card__price"><span>$</span>{price}</div>
+            </li>
+          );
+        })}
+      </ul>
+    )
+  };
   return (
     <div className="container">
       <PageHeader />
@@ -57,6 +78,16 @@ function ProductCard() {
           <button type="button" className="button black-button product-info__button">Add to cart</button>
         </div>
       </section>
+      <section className="similar-ads">
+        <div className="similar-ads__header">
+          <h3 className="similar-ads__title">You may also like</h3>
+          <button type="button" className="button similar-ads__button-show">View all</button>
+        </div>
+        <div className="similar-ads__product">
+          {renderSimilarAds()}
+        </div>
+      </section>
+
     </div>
   )
 }
